@@ -10,7 +10,12 @@ namespace FakeBackend.Server.Models
         {
         }
 
-        
-        public DbSet<DTask> DTasks { get; set; }
+
+
+
+     
+
+        public DbSet<Task> DTasks { get; set; }
+      
     }
 }

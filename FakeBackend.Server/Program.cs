@@ -1,6 +1,8 @@
 using FakeBackend.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
