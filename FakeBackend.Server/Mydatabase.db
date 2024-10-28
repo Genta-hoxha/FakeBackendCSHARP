@@ -1,0 +1,6 @@
+﻿namespace FakeBackend.Server
+{
+    public class Mydatabase
+    {
+    }
+}

@@ -15,13 +15,13 @@ namespace FakeBackend.Server.Controllers
         {
              new DTag
             {
-                Id = "1",
+                Id = 1,
                 Title = "work",
 
             },
             new DTag
             {
-                Id = "2",
+                Id = 2,
                 Title = "personal",
 
             }
@@ -43,28 +43,21 @@ namespace FakeBackend.Server.Controllers
 
             var tag = new DTag
             {
-                Id = (tags.Count + 1).ToString(),
+                Id = (tags.Count + 1),
                 Title = tagWid.Title,
-                          };
+            };
             tags.Add(tag);
             return Ok(tag);
 
 
         }
-        
-        //public IActionResult AddTag([FromBody] DTag tag)
-        //{
-        //    if (tag == null) return BadRequest("Tag cannot be null.");
 
-        //    tag.Id = (tags.Count + 1).ToString();
-        //    tags.Add(tag);
-        //    return CreatedAtAction(nameof(GetTags), new { id = tag.Id }, tag);
-        //}
+
 
         [HttpDelete("id/{id}")]
         public IActionResult DeleteTag(int id)
         {
-            var tag = tags.FirstOrDefault(t => t.Id == id.ToString());
+            var tag = tags.FirstOrDefault(t => t.Id == id);
             if (tag == null) return NotFound();
 
             tags.Remove(tag);
@@ -72,3 +65,4 @@ namespace FakeBackend.Server.Controllers
         }
     }
 }
+

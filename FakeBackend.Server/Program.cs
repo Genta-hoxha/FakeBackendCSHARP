@@ -1,8 +1,7 @@
+using FakeBackend.Server.Data;
 using FakeBackend.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
-using Microsoft.EntityFrameworkCore;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +11,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<FakeDBContext>(opt =>
-{
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DevConnection"));
-});
+builder.Services.AddScoped<TaskContext>();
+
+builder.Services.AddDbContext<TaskContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DevConnection")));
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -29,7 +29,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();
@@ -37,5 +37,7 @@ app.MapControllers();
 app.MapFallbackToFile("/index.html");
 
 app.Run();
+
+
 
 
